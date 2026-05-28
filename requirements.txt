@@ -47,7 +47,7 @@ kaleido>=0.2.1
 jupyter>=1.0.0
 notebook>=7.0.0
 ipykernel>=6.29.0
-ipywidgets>=8.1.0
+# ipywidgets>=8.1.0  # Optional; can cause Windows long-path issues
 
 # --- Config & utilities ---
 pyyaml>=6.0.1

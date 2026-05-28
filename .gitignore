@@ -49,3 +49,10 @@ reports/*.xlsx
 
 # Claude local/session settings
 .claude/settings.local.json
+
+# Processed/generated datasets
+data/processed/
+data/features/
+*.parquet
+*.feather
+*.csv
