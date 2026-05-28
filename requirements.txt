@@ -1,0 +1,59 @@
+# ============================================================
+# DAX Quant Research Lab — Python Dependencies
+# Python >= 3.10 recommended
+# Install: pip install -r requirements.txt
+# ============================================================
+
+# --- MT5 data source ---
+MetaTrader5>=5.0.45
+
+# --- Core data stack ---
+pandas>=2.0.0
+numpy>=1.24.0
+pyarrow>=14.0.0
+
+# --- Timezone ---
+pytz>=2023.3
+
+# --- Technical indicators ---
+pandas-ta>=0.3.14b0
+
+# --- Machine learning ---
+scikit-learn>=1.4.0
+xgboost>=2.0.0
+lightgbm>=4.1.0
+catboost>=1.2.2
+imbalanced-learn>=0.12.0
+
+# --- Clustering / regime ---
+hdbscan>=0.8.33
+
+# --- Dimensionality reduction ---
+umap-learn>=0.5.5
+
+# --- SHAP / explainability ---
+shap>=0.44.0
+
+# --- Association rules ---
+mlxtend>=0.23.1
+
+# --- Visualization ---
+matplotlib>=3.8.0
+seaborn>=0.13.0
+plotly>=5.18.0
+kaleido>=0.2.1
+
+# --- Notebooks ---
+jupyter>=1.0.0
+notebook>=7.0.0
+ipykernel>=6.29.0
+ipywidgets>=8.1.0
+
+# --- Config & utilities ---
+pyyaml>=6.0.1
+python-dotenv>=1.0.0
+tqdm>=4.66.0
+joblib>=1.3.0
+loguru>=0.7.2
+scipy>=1.12.0
+statsmodels>=0.14.0

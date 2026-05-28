@@ -1,0 +1,97 @@
+# DAX M1 Quant Research Lab — Main Configuration
+# ============================================================
+# TODO: Confirm symbol name with your broker (Key To Markets).
+#       Run notebooks/01_mt5_data_ingestion.ipynb → cell "Find DAX symbol"
+#       to print all available symbols and detect candidates automatically.
+# Common DAX symbols across brokers:
+#   GER40, GER30, DAX40, DAX30, DE40, XGER, GER40.cash
+# ============================================================
+
+mt5:
+  symbol: "GER40"                        # TODO: confirm with broker
+  timeframe_base: "M1"
+  timeframes_derived: ["M3", "M5", "M15", "M30"]
+
+  # Historical data range
+  start_date: "2022-01-01"
+  end_date: null                          # null = today
+
+  # Timezone of the MT5 server (used for session filters)
+  # TODO: confirm server timezone with Key To Markets
+  server_timezone: "Etc/UTC"
+
+  # Auxiliary symbols for cross-asset features
+  # TODO: verify which are available on Key To Markets
+  aux_symbols:
+    - symbol: "US30"       # Dow Jones 30
+      enabled: true
+    - symbol: "US500"      # S&P 500
+      enabled: true
+    - symbol: "NAS100"     # NASDAQ 100
+      enabled: true
+    - symbol: "EURUSD"     # EUR/USD
+      enabled: true
+    - symbol: "XAUUSD"     # Gold
+      enabled: true
+    - symbol: "ESTX50"     # Euro Stoxx 50
+      enabled: false        # uncomment/set true if available
+    - symbol: "BUND"       # German Bund
+      enabled: false        # uncomment/set true if available
+
+features:
+  ema_periods: [8, 16, 24, 64, 200]
+  atr_period: 14
+  rsi_period: 14
+  rsi_overbought: 70
+  rsi_oversold: 30
+  bbands_period: 20
+  bbands_std: 2.0
+  adx_period: 14
+  macd_fast: 12
+  macd_slow: 26
+  macd_signal: 9
+  realized_vol_windows: [5, 15, 30, 60]     # minutes (bars on M1)
+  rolling_vol_windows: [20, 60, 120, 240]   # bars on M1
+  zscore_windows: [20, 60, 120]
+  volume_zscore_window: 20
+  lead_lag_max_lag: 5                        # bars
+
+labeling:
+  atr_tp_multiples: [1.5, 2.0, 3.0]
+  atr_sl_multiples: [1.0, 1.5, 2.0]
+  horizons_minutes: [5, 15, 30, 60]
+  min_atr_multiplier: 1.0                   # minimum ATR multiple for any label
+  barrier_atr_period: 14                    # ATR period used for barrier computation
+
+backtest:
+  # TODO: confirm exact values with Key To Markets
+  spread_points: 1.0          # points (typical DAX spread ~0.8–1.2 pts)
+  slippage_points: 0.5        # conservative slippage estimate
+  commission_per_lot: 7.0     # EUR round-turn per standard lot — TODO confirm
+  lot_size: 1.0               # lots per trade
+  point_value: 1.0            # EUR per point per lot — TODO confirm contract spec
+  max_holding_bars: 60        # M1 bars = 60 minutes max hold
+  one_position_at_a_time: true
+
+  # Trading session filter (UTC)
+  # DAX: Xetra 08:00–16:30 CET → 07:00–15:30 UTC (winter), 06:00–14:30 UTC (summer)
+  # Extended CFD hours used here
+  session_start_utc: "07:00"
+  session_end_utc: "21:00"
+
+  # Minimum trades for a strategy to be considered valid
+  min_trades: 30
+
+validation:
+  n_splits: 5                             # walk-forward splits
+  train_pct: 0.7                          # training window fraction
+  purge_bars: 60                          # M1 bars to purge between train/test
+  embargo_bars: 10                        # M1 bars to embargo after purge
+
+paths:
+  raw: "data/raw"
+  interim: "data/interim"
+  processed: "data/processed"
+  features: "data/features"
+  models: "models"
+  reports: "reports"

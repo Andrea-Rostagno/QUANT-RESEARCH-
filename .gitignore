@@ -1,0 +1,51 @@
+# Python virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment variables / secrets
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs/
+
+# Data - non pushare dataset pesanti o proprietari
+data/raw/
+data/external/
+data/interim/
+
+# Models - non pushare modelli pesanti
+models/
+*.pkl
+*.joblib
+*.pt
+*.pth
+*.onnx
+*.h5
+
+# Reports generated
+reports/*.html
+reports/*.pdf
+reports/*.xlsx
+
+# Claude local/session settings
+.claude/settings.local.json
