@@ -8,7 +8,7 @@
 # ============================================================
 
 mt5:
-  symbol: "GER40"                        # TODO: confirm with broker
+  symbol: "XGER30"                        
   timeframe_base: "M1"
   timeframes_derived: ["M3", "M5", "M15", "M30"]
 
@@ -22,22 +22,19 @@ mt5:
 
   # Auxiliary symbols for cross-asset features
   # TODO: verify which are available on Key To Markets
-  aux_symbols:
-    - symbol: "US30"       # Dow Jones 30
+    aux_symbols:
+    - symbol: "XUS30"      # US Dow Jones 30 Index
       enabled: true
-    - symbol: "US500"      # S&P 500
+    - symbol: "XUS500"     # US S&P 500 Index
       enabled: true
-    - symbol: "NAS100"     # NASDAQ 100
+    - symbol: "XUSTEC"     # US Nasdaq 100 Index
       enabled: true
     - symbol: "EURUSD"     # EUR/USD
       enabled: true
     - symbol: "XAUUSD"     # Gold
       enabled: true
-    - symbol: "ESTX50"     # Euro Stoxx 50
-      enabled: false        # uncomment/set true if available
-    - symbol: "BUND"       # German Bund
-      enabled: false        # uncomment/set true if available
-
+    - symbol: "XEU50"      # Euro Stoxx 50 Index
+      enabled: true
 features:
   ema_periods: [8, 16, 24, 64, 200]
   atr_period: 14
