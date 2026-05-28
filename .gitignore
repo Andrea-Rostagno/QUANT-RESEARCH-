@@ -56,3 +56,4 @@ data/features/
 *.parquet
 *.feather
 *.csv
+*.pyc
